@@ -1,0 +1,72 @@
+/* Page layout */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111228;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 0;
+}
+
+/* Traffic light housing */
+.traffic {
+  width: 120px;
+  background: linear-gradient(#222, #0f0f1b);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.6), inset 0 2px 6px rgba(255,255,255,.02);
+}
+
+/* Row that holds lights */
+.lights {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+/* Each light */
+.light {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #2b2b35; /* off state */
+  opacity: 0.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow .2s, opacity .2s;
+}
+
+/* Colors */
+.red    { background-color: #8b0000; color: #ff3b3b; }
+.yellow { background-color: #6b5300; color: #ffd23b; }
+.green  { background-color: #004d00; color: #3bff6b; }
+
+/* Animation */
+.light {
+  animation: lightOn 6s infinite;
+  animation-timing-function: ease-in-out;
+}
+.red    { animation-delay: 0s; }
+.yellow { animation-delay: 2s; }
+.green  { animation-delay: 4s; }
+
+@keyframes lightOn {
+  0%, 16.66% {
+    opacity: 1;
+    box-shadow: 0 0 22px currentColor, 0 0 6px rgba(0,0,0,.5) inset;
+    transform: translateY(-1px);
+  }
+  17%, 100% {
+    opacity: 0.3;
+    box-shadow: none;
+    transform: none;
+  }
+}
+/* Responsive tweak */
+@media (max-width: 400px) {
+  .traffic { transform: scale(.9); }
+  .light { width: 60px; height: 60px; }
+}
